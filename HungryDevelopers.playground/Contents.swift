@@ -2,9 +2,11 @@ import UIKit
 
 class Spoon {
     var name: String
+    var index: Int
     
-    init(name: String) {
+    init(name: String, index: Int) {
         self.name = name
+        self.index = index
     }
     private var lock = NSLock()
     
@@ -34,11 +36,9 @@ class Developer {
     
     func think() {
         print("\(self.name) is thinking...")
-        if Bool.random() {
-            leftSpoon.pickUp(self.name)
+        if rightSpoon.index < leftSpoon.index {
             rightSpoon.pickUp(self.name)
         } else {
-            rightSpoon.pickUp(self.name)
             leftSpoon.pickUp(self.name)
         }
         return
@@ -61,11 +61,11 @@ class Developer {
     }
 }
 
-var spoonA = Spoon(name: "SpoonA")
-var spoonB = Spoon(name: "SpoonB")
-var spoonC = Spoon(name: "SpoonC")
-var spoonD = Spoon(name: "SpoonD")
-var spoonE = Spoon(name: "SpoonE")
+var spoonA = Spoon(name: "SpoonA", index: 1)
+var spoonB = Spoon(name: "SpoonB", index: 2)
+var spoonC = Spoon(name: "SpoonC", index: 3)
+var spoonD = Spoon(name: "SpoonD", index: 4)
+var spoonE = Spoon(name: "SpoonE", index: 5)
 
 var developer_1 = Developer(spoonA, spoonB, "Developer 1")
 var developer_2 = Developer(spoonB, spoonC, "Developer 2")
